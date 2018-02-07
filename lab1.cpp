@@ -41,6 +41,7 @@ using namespace std;
 #include <GL/glx.h>
 
 const int MAX_PARTICLES = 2000;
+const int MAX_BOXES = 5;
 const float GRAVITY = 0.1;
 
 //some structures
@@ -293,27 +294,28 @@ void render()
 	//draw a box
 	Shape *s;
 	glColor3ub(90,140,90);
-	s = &g.box;
-	glPushMatrix();
-	glTranslatef(s->center.x, s->center.y, s->center.z);
 	float w, h;
-	w = s->width;
-	h = s->height;
-	glBegin(GL_QUADS);
+	for (int i=0; i<MAX_BOXES; i++) {
+	    s = &g.box;
+   	    glPushMatrix();
+	    glTranslatef(s->center.x, s->center.y, s->center.z);
+	    w = s->width;
+	    h = s->height;
+	    glBegin(GL_QUADS);
 		glVertex2i(-w, -h);
 		glVertex2i(-w,  h);
 		glVertex2i( w,  h);
 		glVertex2i( w, -h);
-	glEnd();
-	glPopMatrix();
+	    glEnd();
+ 	    glPopMatrix();
+	}
 	//
 	//Draw the particle here
 	for (int i=0; i<g.n; i++) {
-	    glPushMatrix();
-	    Vec *c = &g.particle[i].s.center;
-	    //glColor3ub(150,160,220);
+            glPushMatrix();
 	    glColor3ub(255,0,0);
-	    w =
+	    Vec *c = &g.particle[i].s.center;
+	    w = 2;
 	    h = 2;
 	    glBegin(GL_QUADS);
 		glVertex2i(c->x-w, c->y-h);
