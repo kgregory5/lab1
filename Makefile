@@ -1,10 +1,15 @@
 # 3350 lab1
 # to compile your project, type make and press enter
 
-all: lab1
+all: lab1Windows
 
-lab1: lab1.cpp
+mac: lab1Mac
+
+lab1Windows: lab1.cpp
 	g++ lab1.cpp -Wall -olab1 -lX11 -lGL -lGLU -lm
+
+lab1Mac: lab1.cpp
+	g++ lab1.cpp -Wall -olab1 -I/usr/X11R6/include -L/usr/X11R6/lib -lX11 -framework OpenGl -framework Cocoa -lm -lGL
 
 clean:
 	rm -f lab1
