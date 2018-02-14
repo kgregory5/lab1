@@ -6,10 +6,10 @@ all: lab1Windows
 mac: lab1Mac
 
 lab1Windows: lab1.cpp
-	g++ lab1.cpp -Wall -olab1 -lX11 -lGL -lGLU -lm
+	g++ lab1.cpp libggfonts.a -Wall -olab1 -lX11 -lGL -lGLU -lm
 
 lab1Mac: lab1.cpp
-	g++ lab1.cpp -Wall -olab1 -I/usr/X11R6/include -L/usr/X11R6/lib -lX11 -framework OpenGl -framework Cocoa -lm -lGL
+	g++ lab1.cpp libggfonts.a -Wall -olab1 -I/usr/X11R6/include -L/usr/X11R6/lib -lX11 -framework OpenGl -framework Cocoa -lm -lGL
 
 clean:
 	rm -f lab1
